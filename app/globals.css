@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-green: var(--brand-green);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;
+
+  /* Background #FFFFFF */
+  --background: oklch(1 0 0);
+  /* Text #1F2937 */
+  --foreground: oklch(0.31 0.03 258);
+
+  --navy: #0d2a5c;
+  --navy-foreground: #ffffff;
+  --brand-blue: #1e6ff5;
+  --brand-orange: #f6821f;
+  --brand-green: #25a34c;
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.31 0.03 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.31 0.03 258);
+
+  /* Deep Royal Blue #0F4C81 */
+  --primary: oklch(0.42 0.11 251);
+  --primary-foreground: oklch(0.99 0 0);
+
+  /* Warm Orange #F59E0B */
+  --secondary: oklch(0.77 0.16 70);
+  --secondary-foreground: oklch(0.31 0.03 258);
+
+  /* Alternate section background #F8FAFC */
+  --muted: oklch(0.98 0.003 248);
+  --muted-foreground: oklch(0.5 0.02 258);
+
+  --accent: oklch(0.77 0.16 70);
+  --accent-foreground: oklch(0.31 0.03 258);
+
+  /* WhatsApp #25D366 */
+  --whatsapp: oklch(0.74 0.18 149);
+  --whatsapp-foreground: oklch(1 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.006 248);
+  --input: oklch(0.92 0.006 248);
+  --ring: oklch(0.42 0.11 251);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
