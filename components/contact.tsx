@@ -61,7 +61,7 @@ export function Contact() {
     const email = String(data.get('email')   ?? '')
 
     const body = encodeURIComponent(
-      `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\n${message}`
+      `Name : ${name}\nPhone : ${phone}\nEmail : ${email}\nMessage: ${message}`
     )
     const whatsappUrl = `https://wa.me/919732367890?text=${body}`
     const a = document.createElement('a')
