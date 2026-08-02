@@ -63,11 +63,11 @@ export function Contact() {
     const body = encodeURIComponent(
       `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\n\n${message}`
     )
-    const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-      site.email
-    )}&su=${encodeURIComponent('Website Enquiry')}&body=${body}`
+    const whatsappUrl = `https://wa.me/919732367890?text=${body}`
     const a = document.createElement('a')
-    a.href = mailtoUrl
+    a.href = whatsappUrl
+    a.target = '_blank'
+    a.rel = 'noopener noreferrer'
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -194,7 +194,7 @@ export function Contact() {
 
             {submitted && (
               <p role="status" className="text-sm font-medium text-whatsapp">
-                Thank you! Your email app should open to send your message.
+                Thank you! WhatsApp should open to send your message.
               </p>
             )}
           </form>
