@@ -1,3 +1,6 @@
+"use client"
+
+import { motion } from "framer-motion"
 import { Clock, Headphones, Lock, MapPin, Monitor, Phone, Plane, Shield, ShieldCheck, Star, Train, Bus, Zap, Mail } from "lucide-react"
 import { PartnersCard } from "@/components/partners-card"
 import { StatsBar } from "@/components/stats-bar"
@@ -47,7 +50,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#e9f1ff] from-20% via-[#e9f1ff]/70 via-42% to-transparent to-58%" />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-6 lg:py-6 xl:gap-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-start lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-6 lg:py-6 xl:gap-16">
 
         {/* Left column wrapper (Mobile background goes here) */}
         <div className="relative w-full lg:w-auto lg:p-0">
@@ -55,34 +58,59 @@ export function Hero() {
           {/* ========================================================================= */}
           {/* DESKTOP CONTENT (Exactly as original, hidden on mobile) */}
           {/* ========================================================================= */}
-          <div className="relative z-10 max-w-[560px] shrink-0 hidden lg:block px-4 pt-8 pb-12 sm:px-6 lg:p-0">
+          <motion.div 
+            className="relative z-10 max-w-[560px] shrink-0 hidden lg:block px-4 pt-8 pb-12 sm:px-6 lg:p-0"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+            }}
+          >
 
             {/* ─── DESKTOP-ONLY background layer (hidden on mobile, kept for desktop) ─── */}
 
             {/* Heading */}
-            <h1 className="text-[34px] font-bold leading-[1.25] tracking-tight text-navy sm:text-[44px] lg:text-[55px]">
+            <motion.h1 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-[34px] font-bold leading-[1.25] tracking-tight text-navy sm:text-[44px] lg:text-[55px]"
+            >
               All Your Travel
               <br />
               &amp; Digital Needs,
               <br />
               <span className="text-brand-blue">Under One Roof</span>
-            </h1>
+            </motion.h1>
 
             {/* Orange underline */}
-            <div className="mt-4 h-1 w-28 rounded-full bg-brand-orange" />
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scaleX: 0 }, visible: { opacity: 1, scaleX: 1 } }}
+              style={{ originX: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mt-4 h-1 w-28 rounded-full bg-brand-orange" 
+            />
 
             {/* Paragraph */}
-            <p className="mt-5 text-[15px] leading-[1.85] text-black/70">
+            <motion.p 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mt-5 text-[15px] leading-[1.85] text-black/70"
+            >
               Book Train, Flight, Bus &amp; Car Rentals with confidence.
               <br className="hidden sm:block" /> We also provide Projector Rental
               and complete
               <br className="hidden sm:block" /> Cyber Cafe services — all handled
               by a friendly,
               <br className="hidden sm:block" /> experienced team.
-            </p>
+            </motion.p>
 
             {/* Features */}
-            <div className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+            <motion.div 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mt-8 flex flex-wrap gap-x-7 gap-y-3"
+            >
               {features.map((f) => (
                 <div key={f.subtitle} className="flex items-center gap-2.5">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-blue/20 bg-white/80 text-brand-blue">
@@ -96,10 +124,14 @@ export function Hero() {
                   </span>
                 </div>
               ))}
-            </div>
+            </motion.div>
 
             {/* CTA buttons */}
-            <div className="mt-8 flex flex-wrap gap-3.5">
+            <motion.div 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mt-8 flex flex-wrap gap-3.5"
+            >
               <a
                 href={site.phoneHref}
                 className="inline-flex items-center gap-2 rounded-lg bg-brand-orange px-5 py-3 text-[15px] font-semibold text-white shadow-lg shadow-brand-orange/25 transition-transform hover:-translate-y-0.5"
@@ -128,8 +160,8 @@ export function Hero() {
                 <Mail className="h-3.5 w-3.5" />
                 Contact Us
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           {/* ========================================================================= */}
           {/* MOBILE CONTENT (Hidden on desktop) — exact match of reference design */}
           {/* ========================================================================= */}
@@ -164,8 +196,20 @@ export function Hero() {
               </div>
 
               {/* ─── Headline ─── */}
-              <div className="relative z-10">
-                <h1 className="text-navy text-[34px] font-bold leading-[1.15] tracking-tight text-balance">
+              <motion.div 
+                className="relative z-10"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+                }}
+              >
+                <motion.h1 
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="text-navy text-[34px] font-bold leading-[1.15] tracking-tight text-balance"
+                >
                   All Your
                   <br />
                   Travel &amp; Digital
@@ -173,14 +217,23 @@ export function Hero() {
                   Needs,
                   <br />
                   <span className="text-brand-blue">Under One Roof</span>
-                </h1>
+                </motion.h1>
 
-                <div className="bg-brand-orange mt-4 h-1 w-24 rounded-full" />
+                <motion.div 
+                  variants={{ hidden: { opacity: 0, scaleX: 0 }, visible: { opacity: 1, scaleX: 1 } }}
+                  style={{ originX: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="bg-brand-orange mt-4 h-1 w-24 rounded-full" 
+                />
 
-                <p className="text-navy/85 mt-4 max-w-[290px] text-[16px] font-medium leading-relaxed">
+                <motion.p 
+                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="text-navy/85 mt-4 max-w-[290px] text-[16px] font-medium leading-relaxed"
+                >
                   Train, Flight &amp; Bus Booking with trusted support. Cyber Cafe services for all your digital needs.
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
 
               {/* Spacer — lets the train & bus in the image show through */}
               <div className="min-h-[30px] flex-1" />
@@ -206,7 +259,12 @@ export function Hero() {
               </div>
 
               {/* ─── OUR SERVICES section ─── */}
-              <div className="relative z-10 pb-5">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+                className="relative z-10 pb-5"
+              >
                 <div className="mt-4 flex items-start justify-between px-1">
                   {serviceItems.map((svc) => (
                     <div key={svc.label} className="flex flex-col items-center gap-2.5">
@@ -217,7 +275,7 @@ export function Hero() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

@@ -83,17 +83,17 @@ const MobileFooter = () => {
                     <Phone className="h-4 w-4 text-white" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[15px] font-bold text-white tracking-wide">+91 98320 67890</span>
-                    <span className="text-[15px] font-bold text-white tracking-wide">+91 97333 67890</span>
+                    <a href="tel:+919832067890" className="text-[15px] font-bold text-white tracking-wide transition-colors hover:text-white/80">+91 98320 67890</a>
+                    <a href="tel:+919733367890" className="text-[15px] font-bold text-white tracking-wide transition-colors hover:text-white/80 mt-2">+91 97333 67890</a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <a href="https://wa.me/919732367890" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-opacity hover:opacity-80">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/20">
                     <WhatsApp className="h-[18px] w-[18px] text-[#25D366]" />
                   </div>
                   <span className="text-[15px] font-bold text-white tracking-wide">+91 97323 67890</span>
-                </div>
+                </a>
               </div>
             </div>
 
@@ -113,17 +113,17 @@ const MobileFooter = () => {
                     <Phone className="h-4 w-4 text-white" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[15px] font-bold text-white tracking-wide">+91 70762 12345</span>
-                    <span className="text-[15px] font-bold text-white tracking-wide">+91 70763 12345</span>
+                    <a href="tel:+917076212345" className="text-[15px] font-bold text-white tracking-wide transition-colors hover:text-white/80">+91 70762 12345</a>
+                    <a href="tel:+917076312345" className="text-[15px] font-bold text-white tracking-wide transition-colors hover:text-white/80 mt-2">+91 70763 12345</a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <a href="https://wa.me/918436112345" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 transition-opacity hover:opacity-80">
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366]/20">
                     <WhatsApp className="h-[18px] w-[18px] text-[#25D366]" />
                   </div>
                   <span className="text-[15px] font-bold text-white tracking-wide">+91 84361 12345</span>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -133,29 +133,29 @@ const MobileFooter = () => {
         <div className="flex flex-col gap-5">
           <h3 className="font-heading text-[13px] font-bold tracking-widest text-white/50 uppercase">Contact Information</h3>
           <div className="flex flex-col gap-5 rounded-2xl bg-[#0C3F6B] p-6 shadow-xl border border-white/5">
-            <div className="flex items-start gap-4">
+            <a href="https://www.google.com/maps/search/?api=1&query=24,+Bimal+Sinha+Sarani,+Hakim+Para,+Siliguri,+West+Bengal" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 transition-opacity hover:opacity-80">
               <MapPin className="mt-1 h-5 w-5 shrink-0 text-[#F59E0B]" />
               <div className="flex flex-col gap-1">
                 <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest">Address</span>
                 <span className="text-[15px] font-medium leading-relaxed text-white">24, Bimal Sinha Sarani,<br />Hakim Para, Siliguri,<br />West Bengal – 734001</span>
               </div>
-            </div>
+            </a>
             <div className="h-px w-full bg-white/10" />
-            <div className="flex items-start gap-4">
+            <a href="tel:+919732367890" className="flex items-start gap-4 transition-opacity hover:opacity-80">
               <Phone className="mt-1 h-5 w-5 shrink-0 text-[#F59E0B]" />
               <div className="flex flex-col gap-1">
                 <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest">Main Contact</span>
                 <span className="text-[16px] font-bold text-white tracking-wide">+91 97323 67890</span>
               </div>
-            </div>
+            </a>
             <div className="h-px w-full bg-white/10" />
-            <div className="flex items-start gap-4">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=blcslg13@gmail.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 transition-opacity hover:opacity-80">
               <Mail className="mt-1 h-5 w-5 shrink-0 text-[#F59E0B]" />
               <div className="flex flex-col gap-1">
                 <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest">Email</span>
                 <span className="text-[15px] font-medium text-white">blcslg13@gmail.com</span>
               </div>
-            </div>
+            </a>
             <div className="h-px w-full bg-white/10" />
             <div className="flex items-start gap-4">
               <Clock className="mt-1 h-5 w-5 shrink-0 text-[#F59E0B]" />
