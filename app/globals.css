@@ -96,3 +96,122 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Premium button interactions ── */
+/* Hover only on devices that support it (prevents sticky hover on mobile) */
+.btn-cta {
+  transition: transform 150ms cubic-bezier(.4,0,.2,1), box-shadow 150ms cubic-bezier(.4,0,.2,1), filter 150ms cubic-bezier(.4,0,.2,1);
+}
+@media (hover: hover) {
+  .btn-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.08);
+    box-shadow: 0 8px 24px -6px rgba(0,0,0,0.18);
+  }
+}
+.btn-cta:active {
+  transform: scale(0.97);
+  filter: brightness(0.95);
+  transition-duration: 80ms;
+}
+
+/* Service icon circles */
+.svc-icon-wrap {
+  transition: transform 150ms cubic-bezier(.4,0,.2,1), box-shadow 150ms cubic-bezier(.4,0,.2,1), background-color 200ms ease;
+}
+.svc-icon-wrap svg,
+.svc-icon-wrap .svc-icon {
+  transition: color 200ms ease;
+}
+.svc-label {
+  transition: color 200ms ease;
+}
+@media (hover: hover) {
+  .svc-link:hover .svc-icon-wrap {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 6px 18px -4px rgba(30,111,245,0.25);
+    background-color: var(--brand-blue);
+  }
+  .svc-link:hover .svc-icon-wrap svg,
+  .svc-link:hover .svc-icon-wrap .svc-icon {
+    color: #fff;
+  }
+  .svc-link:hover .svc-label {
+    color: var(--brand-blue);
+  }
+}
+.svc-link:active .svc-icon-wrap {
+  transform: scale(0.93);
+  background-color: var(--brand-blue);
+  transition-duration: 80ms;
+}
+.svc-link:active .svc-icon-wrap svg,
+.svc-link:active .svc-icon-wrap .svc-icon {
+  color: #fff;
+}
+.svc-link:active .svc-label {
+  color: var(--brand-blue);
+}
+
+/* Service pill links (desktop) */
+.svc-link {
+  transition: transform 150ms cubic-bezier(.4,0,.2,1), box-shadow 150ms cubic-bezier(.4,0,.2,1), background-color 200ms ease, border-color 200ms ease;
+}
+@media (hover: hover) {
+  .svc-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px -4px rgba(30,111,245,0.2);
+    background-color: var(--brand-blue) !important;
+    border-color: var(--brand-blue) !important;
+  }
+  .svc-link:hover .svc-label {
+    color: #fff;
+  }
+  .svc-link:hover .svc-icon {
+    color: #fff;
+  }
+}
+.svc-link:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE TOUCH FEEDBACK — only fires on touch devices (pointer: coarse)
+   Desktop hover/active states above remain completely untouched.
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (pointer: coarse) {
+  /* Disable default tap highlight so our custom states are the only feedback */
+  .btn-cta,
+  .svc-link {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ── Call Now & WhatsApp buttons ── */
+  .btn-cta:active {
+    transform: scale(0.94) !important;
+    filter: brightness(0.85) !important;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.3) !important;
+    transition-duration: 120ms !important;
+  }
+
+  /* ── Train / Flight / Bus / Cyber Cafe service icons ── */
+  .svc-link:active {
+    transform: scale(0.96) !important;
+    transition-duration: 120ms !important;
+  }
+  .svc-link:active .svc-icon-wrap {
+    transform: scale(0.88) !important;
+    background-color: var(--brand-blue) !important;
+    box-shadow: 0 4px 16px -3px rgba(30, 111, 245, 0.35) !important;
+    transition-duration: 120ms !important;
+  }
+  .svc-link:active .svc-icon-wrap svg,
+  .svc-link:active .svc-icon-wrap .svc-icon {
+    color: #fff !important;
+  }
+  .svc-link:active .svc-label {
+    color: var(--brand-blue) !important;
+    font-weight: 700 !important;
+  }
+}

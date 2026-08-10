@@ -96,8 +96,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} bg-background`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth bg-background`}>
       <body className="font-sans antialiased">
+        {/* iOS Safari needs a global touchstart listener for CSS :active to work */}
+        <script dangerouslySetInnerHTML={{ __html: `document.addEventListener("touchstart",function(){},true);` }} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
