@@ -3,9 +3,10 @@
 import Image from 'next/image'
 import { CheckCircle2 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { useCustomerCount } from '@/hooks/use-customer-count'
 
 const features = [
-  '18+ Years of Trust',
+  '27+ Years of Trust',
   'Serving Siliguri',
   'Authorized Ticket Booking',
   'Fast & Reliable Service',
@@ -14,7 +15,7 @@ const features = [
 ]
 
 const mobileFeatures = [
-  '18+ Years of Trust',
+  '27+ Years of Trust',
   'Serving Siliguri',
   'Authorized Ticket Booking',
   'Fast & Reliable Service',
@@ -24,7 +25,7 @@ const mobileFeatures = [
 
 // target: numeric end value, suffix: trailing symbol(s)
 const stats = [
-  { target: 18,   suffix: '+',  label: 'Years'     },
+  { target: 27,   suffix: '+',  label: 'Years'     },
   { target: 5000, suffix: '+',  label: 'Customers' },
   { target: 12,   suffix: '+',  label: 'Services'  },
   { target: 100,  suffix: '%',  label: 'Trusted'   },
@@ -79,6 +80,7 @@ function StatItem({
 export function About() {
   const statsRef = useRef<HTMLDivElement>(null)
   const [hasAnimated, setHasAnimated] = useState(false)
+  const { count: customerCount } = useCustomerCount()
 
   useEffect(() => {
     const el = statsRef.current
@@ -116,7 +118,7 @@ export function About() {
           {/* Description */}
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
             Baba Loknath Communication has been proudly serving the people of Siliguri, West Bengal
-            for over 18 years. We started as a small neighbourhood service centre and have grown
+            for over 27 years. We started as a small neighbourhood service centre and have grown
             into a trusted one-stop destination for both travel bookings and essential digital
             services. Whether you need a train, flight, bus, or hotel reservation — or require
             printouts, Xerox, lamination, courier, passport photos, or online form assistance —
@@ -152,7 +154,7 @@ export function About() {
             {stats.map(({ target, suffix, label }, i) => (
               <StatItem
                 key={label}
-                target={target}
+                target={label === 'Customers' ? customerCount : target}
                 suffix={suffix}
                 label={label}
                 active={hasAnimated}

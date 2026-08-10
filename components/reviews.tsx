@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Star, Quote, CheckCircle2, ShieldCheck, Users, Award } from 'lucide-react'
+import { useCustomerCount } from '@/hooks/use-customer-count'
 
 const reviews = [
   {
@@ -49,6 +50,7 @@ function Stars() {
 function MobileReviews() {
   const [activeIndex, setActiveIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const { formatted: formattedCustomers } = useCustomerCount()
 
   const handleScroll = () => {
     if (!scrollRef.current) return
@@ -79,8 +81,8 @@ function MobileReviews() {
           ))}
         </div>
         <p className="mt-3 font-heading text-xl font-bold text-primary">4.9/5 Customer Rating</p>
-        <p className="mt-1.5 text-sm font-medium text-muted-foreground">Based on 5,000+ Happy Customers</p>
-        <p className="mt-0.5 text-sm font-medium text-muted-foreground">Serving Siliguri Since 2008</p>
+        <p className="mt-1.5 text-sm font-medium text-muted-foreground">Based on {formattedCustomers} Happy Customers</p>
+        <p className="mt-0.5 text-sm font-medium text-muted-foreground">Serving Siliguri Since 1999</p>
       </div>
 
       {/* Mobile Carousel */}
@@ -140,11 +142,11 @@ function MobileReviews() {
         </div>
         <div className="flex items-center gap-3.5 text-sm font-semibold tracking-wide text-primary">
           <Award className="size-5 text-secondary" />
-          18+ Years Experience
+          27+ Years Experience
         </div>
         <div className="flex items-center gap-3.5 text-sm font-semibold tracking-wide text-primary">
           <Users className="size-5 text-secondary" />
-          5,000+ Happy Customers
+          {formattedCustomers} Happy Customers
         </div>
       </div>
     </div>

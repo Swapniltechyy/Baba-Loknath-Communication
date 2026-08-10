@@ -55,7 +55,7 @@ const MobileFooter = () => {
           </div>
           <div className="flex flex-col gap-1">
             <p className="text-[15px] font-semibold text-white/95">Trusted Travel & Digital Services</p>
-            <p className="text-[13px] text-white/70">Serving Since 2008</p>
+            <p className="text-[13px] text-white/70">Serving Since 1999</p>
           </div>
           <p className="text-[15px] leading-relaxed text-white/80 max-w-[280px]">
             Your trusted destination for travel bookings and digital services.

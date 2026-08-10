@@ -2,9 +2,10 @@
 
 import { Briefcase, Headphones, ShieldCheck, Trophy, Users } from "lucide-react"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useCustomerCount } from "@/hooks/use-customer-count"
 
 const stats = [
-  { icon: Trophy, value: "18+", label: "Years of Experience" },
+  { icon: Trophy, value: "27+", label: "Years of Experience" },
   { icon: Users, value: "5,000+", label: "Happy Customers" },
   { icon: Briefcase, value: "12+", label: "Services Offered" },
   { icon: ShieldCheck, value: "100%", label: "Secure & Reliable" },
@@ -98,6 +99,7 @@ function AnimatedStat({
 export function StatsBar() {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const { formatted: formattedCustomers } = useCustomerCount()
 
   useEffect(() => {
     const el = ref.current
@@ -126,7 +128,12 @@ export function StatsBar() {
         className="grid w-full grid-cols-2 gap-y-3 rounded-2xl bg-navy px-5 py-3.5 shadow-[0_18px_40px_-24px_rgba(13,42,92,0.6)] sm:grid-cols-3 md:grid-cols-5 md:divide-x md:divide-white/15"
       >
         {stats.map((s) => (
-          <AnimatedStat key={s.label} running={isVisible} {...s} />
+          <AnimatedStat 
+            key={s.label} 
+            running={isVisible} 
+            {...s} 
+            value={s.label === 'Happy Customers' ? formattedCustomers : s.value} 
+          />
         ))}
       </div>
     </div>

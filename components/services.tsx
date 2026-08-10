@@ -259,7 +259,7 @@ export function Services() {
               Everything You Need,<br />All in One Place
             </h2>
             <p className="mt-4 text-[13px] leading-relaxed text-muted-foreground px-2">
-              Travel, Digital & Utility Services — trusted by thousands of customers across Siliguri for over 18 years.
+              Travel, Digital & Utility Services — trusted by thousands of customers across Siliguri for over 27 years.
             </p>
           </div>
 

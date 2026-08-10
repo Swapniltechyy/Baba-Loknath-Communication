@@ -14,7 +14,7 @@ const features = [
 ]
 
 const trustItems = [
-  { icon: Star, label: "18+ Years" },
+  { icon: Star, label: "27+ Years" },
   { icon: MapPin, label: "Trusted Local" },
   { icon: Zap, label: "Fast Service" },
 ]
@@ -58,7 +58,7 @@ export function Hero() {
           {/* ========================================================================= */}
           {/* DESKTOP CONTENT (Exactly as original, hidden on mobile) */}
           {/* ========================================================================= */}
-          <motion.div 
+          <motion.div
             className="relative z-10 max-w-[560px] shrink-0 hidden lg:block px-4 pt-8 pb-12 sm:px-6 lg:p-0"
             initial="hidden"
             animate="visible"
@@ -71,7 +71,7 @@ export function Hero() {
             {/* ─── DESKTOP-ONLY background layer (hidden on mobile, kept for desktop) ─── */}
 
             {/* Heading */}
-            <motion.h1 
+            <motion.h1
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-[34px] font-bold leading-[1.25] tracking-tight text-navy sm:text-[44px] lg:text-[55px]"
@@ -84,15 +84,15 @@ export function Hero() {
             </motion.h1>
 
             {/* Orange underline */}
-            <motion.div 
+            <motion.div
               variants={{ hidden: { opacity: 0, scaleX: 0 }, visible: { opacity: 1, scaleX: 1 } }}
               style={{ originX: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="mt-4 h-1 w-28 rounded-full bg-brand-orange" 
+              className="mt-4 h-1 w-28 rounded-full bg-brand-orange"
             />
 
             {/* Paragraph */}
-            <motion.p 
+            <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mt-5 text-[15px] leading-[1.85] text-black/70"
@@ -106,7 +106,7 @@ export function Hero() {
             </motion.p>
 
             {/* Features */}
-            <motion.div 
+            <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mt-8 flex flex-wrap gap-x-7 gap-y-3"
@@ -127,7 +127,7 @@ export function Hero() {
             </motion.div>
 
             {/* CTA buttons */}
-            <motion.div 
+            <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mt-8 flex flex-wrap gap-3.5"
@@ -196,7 +196,7 @@ export function Hero() {
               </div>
 
               {/* ─── Headline ─── */}
-              <motion.div 
+              <motion.div
                 className="relative z-10"
                 initial="hidden"
                 animate="visible"
@@ -205,7 +205,7 @@ export function Hero() {
                   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
                 }}
               >
-                <motion.h1 
+                <motion.h1
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className="text-navy text-[34px] font-bold leading-[1.15] tracking-tight text-balance"
@@ -216,17 +216,19 @@ export function Hero() {
                   <br />
                   Needs,
                   <br />
-                  <span className="text-brand-blue">Under One Roof</span>
+                  <span className="text-brand-blue">Under</span>
+                  <br />
+                  <span className="text-brand-blue">One Roof</span>
                 </motion.h1>
 
-                <motion.div 
+                <motion.div
                   variants={{ hidden: { opacity: 0, scaleX: 0 }, visible: { opacity: 1, scaleX: 1 } }}
                   style={{ originX: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="bg-brand-orange mt-4 h-1 w-24 rounded-full" 
+                  className="bg-brand-orange mt-4 h-1 w-24 rounded-full"
                 />
 
-                <motion.p 
+                <motion.p
                   variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className="text-navy/85 mt-4 max-w-[290px] text-[16px] font-medium leading-relaxed"
@@ -259,7 +261,7 @@ export function Hero() {
               </div>
 
               {/* ─── OUR SERVICES section ─── */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
@@ -267,12 +269,12 @@ export function Hero() {
               >
                 <div className="mt-4 flex items-start justify-between px-1">
                   {serviceItems.map((svc) => (
-                    <div key={svc.label} className="flex flex-col items-center gap-2.5">
+                    <a href="#services" key={svc.label} className="flex flex-col items-center gap-2.5 transition-opacity hover:opacity-80">
                       <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white shadow-[0_4px_16px_-3px_rgba(26,43,86,0.12)]">
                         <svc.icon className="text-brand-blue h-[26px] w-[26px]" />
                       </div>
                       <span className="text-navy text-[13px] font-medium">{svc.label}</span>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </motion.div>

@@ -88,7 +88,7 @@ export function Navbar() {
             <img src="/logo.png" alt="Baba Loknath Communication" className="h-14 w-auto" />
             <span className="flex flex-col leading-none">
               <span className="text-s font-bold tracking-tight text-navy">
-                Baba Loknath
+                BABA LOKNATH
               </span>
               <span className="text-s font-semibold text-brand-orange">
                 Communication
