@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   Bus,
   Car,
@@ -21,6 +22,7 @@ import {
   CheckCircle2
 } from 'lucide-react'
 import { site } from '@/lib/site'
+import { TrainSearchForm } from '@/components/train-search-form'
 
 const PHONE = '919732367890'
 
@@ -265,24 +267,47 @@ export function Services() {
 
           {/* 2-Column Grid */}
           <div className="mt-10 grid grid-cols-2 gap-3">
-            {mobileServices.map((srv) => (
-              <button
-                key={srv.id}
-                onClick={() => setSelectedMobileService(srv)}
-                className="group flex h-[132px] flex-col justify-between rounded-[18px] bg-white p-4 shadow-[0_4px_16px_rgb(0,0,0,0.04)] transition-transform active:scale-[0.98] text-left ring-1 ring-border/20"
-              >
-                <div className="flex w-full items-start justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <srv.icon className="size-5" />
-                  </span>
-                  <ChevronRight className="size-4 text-muted-foreground/30 transition-colors group-hover:text-primary/50" />
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <span className="font-heading text-[13px] font-bold text-primary leading-snug">{srv.title}</span>
-                  <span className="text-[11px] font-medium text-muted-foreground">{srv.subtitle}</span>
-                </div>
-              </button>
-            ))}
+            {mobileServices.map((srv) => {
+              if (srv.id === 'train') {
+                return (
+                  <Link
+                    key={srv.id}
+                    href="/train-enquiry"
+                    className="group flex h-[132px] flex-col justify-between rounded-[18px] bg-white p-4 shadow-[0_4px_16px_rgb(0,0,0,0.04)] transition-transform active:scale-[0.98] text-left ring-1 ring-border/20"
+                  >
+                    <div className="flex w-full items-start justify-between">
+                      <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                        <srv.icon className="size-5" />
+                      </span>
+                      <ChevronRight className="size-4 text-muted-foreground/30 transition-colors group-hover:text-primary/50" />
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-heading text-[13px] font-bold text-primary leading-snug">{srv.title}</span>
+                      <span className="text-[11px] font-medium text-muted-foreground">{srv.subtitle}</span>
+                    </div>
+                  </Link>
+                )
+              }
+
+              return (
+                <button
+                  key={srv.id}
+                  onClick={() => setSelectedMobileService(srv)}
+                  className="group flex h-[132px] flex-col justify-between rounded-[18px] bg-white p-4 shadow-[0_4px_16px_rgb(0,0,0,0.04)] transition-transform active:scale-[0.98] text-left ring-1 ring-border/20"
+                >
+                  <div className="flex w-full items-start justify-between">
+                    <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <srv.icon className="size-5" />
+                    </span>
+                    <ChevronRight className="size-4 text-muted-foreground/30 transition-colors group-hover:text-primary/50" />
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-heading text-[13px] font-bold text-primary leading-snug">{srv.title}</span>
+                    <span className="text-[11px] font-medium text-muted-foreground">{srv.subtitle}</span>
+                  </div>
+                </button>
+              )
+            })}
           </div>
 
 
@@ -313,35 +338,43 @@ export function Services() {
               </button>
             </div>
             
-            <div className="py-7 px-1">
-              <ul className="flex flex-col gap-4">
-                {selectedMobileService.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-3.5 text-[15px] font-semibold text-primary">
-                    <CheckCircle2 className="size-[22px] text-secondary shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {selectedMobileService.id === 'train' ? (
+              <div className="py-4 px-0 max-h-[75vh] overflow-y-auto overscroll-contain">
+                <TrainSearchForm />
+              </div>
+            ) : (
+              <>
+                <div className="py-7 px-1">
+                  <ul className="flex flex-col gap-4">
+                    {selectedMobileService.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center gap-3.5 text-[15px] font-semibold text-primary">
+                        <CheckCircle2 className="size-[22px] text-secondary shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-            <div className="flex gap-3 pt-2">
-              <a
-                href={site.phoneHref}
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-4 text-[15px] font-bold text-white shadow-sm active:bg-primary/90 transition-colors"
-              >
-                <Phone className="size-[18px]" />
-                Call Now
-              </a>
-              <a
-                href={waLink(selectedMobileService.title)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-4 text-[15px] font-bold text-white shadow-sm active:bg-[#25D366]/90 transition-colors"
-              >
-                <WhatsAppIcon className="size-[18px]" />
-                WhatsApp
-              </a>
-            </div>
+                <div className="flex gap-3 pt-2">
+                  <a
+                    href={site.phoneHref}
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-4 text-[15px] font-bold text-white shadow-sm active:bg-primary/90 transition-colors"
+                  >
+                    <Phone className="size-[18px]" />
+                    Call Now
+                  </a>
+                  <a
+                    href={waLink(selectedMobileService.title)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-4 text-[15px] font-bold text-white shadow-sm active:bg-[#25D366]/90 transition-colors"
+                  >
+                    <WhatsAppIcon className="size-[18px]" />
+                    WhatsApp
+                  </a>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

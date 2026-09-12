@@ -5,17 +5,19 @@ import { useEffect, useState, useCallback } from "react"
 import { site } from "@/lib/site"
 
 const navLinks = [
-  { label: "Home", href: "#", sectionId: "home" },
-  { label: "About Us", href: "#about", sectionId: "about" },
-  { label: "Services", href: "#services", sectionId: "services" },
-  { label: "Contact Us", href: "#contact", sectionId: "contact" },
+  { label: "Home", href: "/", sectionId: "home" },
+  { label: "Train Enquiry", href: "/train-enquiry", sectionId: "train-enquiry" },
+  { label: "About Us", href: "/#about", sectionId: "about" },
+  { label: "Services", href: "/#services", sectionId: "services" },
+  { label: "Contact Us", href: "/#contact", sectionId: "contact" },
 ]
 
 const mobileNavLinks = [
-  { label: "Home", href: "#", sectionId: "home" },
-  { label: "Services", href: "#services", sectionId: "services" },
-  { label: "About Us", href: "#about", sectionId: "about" },
-  { label: "Contact Us", href: "#contact", sectionId: "contact" },
+  { label: "Home", href: "/", sectionId: "home" },
+  { label: "Train Enquiry", href: "/train-enquiry", sectionId: "train-enquiry" },
+  { label: "Services", href: "/#services", sectionId: "services" },
+  { label: "About Us", href: "/#about", sectionId: "about" },
+  { label: "Contact Us", href: "/#contact", sectionId: "contact" },
 ]
 
 export function Navbar() {
@@ -35,6 +37,11 @@ export function Navbar() {
   }, [mobileOpen])
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.location.pathname === "/train-enquiry") {
+      setActiveSection("train-enquiry")
+      return
+    }
+
     const navbarHeight = 60
     const sectionIds = ["about", "services", "contact"]
 
@@ -63,13 +70,22 @@ export function Navbar() {
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      e.preventDefault()
       setMobileOpen(false)
-      if (href === "#") {
+      if (href.startsWith("/") && !href.includes("#")) {
+        // Standard page navigation (e.g. /train-enquiry or /)
+        return
+      }
+      if (typeof window !== "undefined" && window.location.pathname !== "/") {
+        // If on another page, navigate to root with hash
+        window.location.href = href.startsWith("#") ? `/${href}` : href
+        return
+      }
+      e.preventDefault()
+      if (href === "#" || href === "/") {
         window.scrollTo({ top: 0, behavior: "smooth" })
         return
       }
-      const id = href.replace("#", "")
+      const id = href.replace("/#", "").replace("#", "")
       const el = document.getElementById(id)
       if (!el) return
       const navbarHeight = 60
@@ -84,7 +100,7 @@ export function Navbar() {
       <header className="sticky top-0 z-50 w-full border-b border-navy/10 bg-background/95 backdrop-blur">
         <nav className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-4 py-2 sm:px-6">
           {/* Brand */}
-          <a href="#" onClick={(e) => handleClick(e, "#")} className="flex items-center gap-2.5">
+          <a href="/" onClick={(e) => handleClick(e, "/")} className="flex items-center gap-2.5">
             <img src="/logo.png" alt="Baba Loknath Communication" className="h-14 w-auto" />
             <span className="flex flex-col leading-none">
               <span className="text-s font-bold tracking-tight text-navy">
@@ -177,19 +193,23 @@ export function Navbar() {
         <ul className="flex flex-col gap-1.5 px-3 py-5">
           {mobileNavLinks.map((link) => {
             const isActive = activeSection === link.sectionId
+
             return (
               <li key={link.label}>
                 <a
                   href={link.href}
                   onClick={(e) => handleClick(e, link.href)}
-                  className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-[15px] font-semibold transition-colors ${isActive
-                    ? "bg-brand-blue/10 text-brand-blue"
-                    : "text-navy hover:bg-navy/5"
-                    }`}
+                  className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-[15px] font-semibold transition-colors ${
+                    isActive
+                      ? "bg-brand-blue/10 text-brand-blue"
+                      : "text-navy hover:bg-navy/5"
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    {isActive && <span className="h-2 w-2 rounded-full bg-brand-blue" />}
-                    {link.label}
+                    {isActive ? (
+                      <span className="h-2 w-2 rounded-full bg-brand-blue" />
+                    ) : null}
+                    <span>{link.label}</span>
                   </div>
                   <ChevronRight className={`h-4 w-4 ${isActive ? "text-brand-blue" : "text-navy/30"}`} />
                 </a>

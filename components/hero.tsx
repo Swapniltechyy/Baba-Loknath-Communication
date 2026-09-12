@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Clock, Headphones, Lock, MapPin, Monitor, Phone, Plane, Shield, ShieldCheck, Star, Train, Bus, Zap, Mail } from "lucide-react"
 import { PartnersCard } from "@/components/partners-card"
@@ -20,10 +21,10 @@ const trustItems = [
 ]
 
 const serviceItems = [
-  { icon: Train, label: "Train" },
-  { icon: Plane, label: "Flight" },
-  { icon: Bus, label: "Bus" },
-  { icon: Monitor, label: "Cyber Cafe" },
+  { icon: Train, label: "Train", href: "/train-enquiry" },
+  { icon: Plane, label: "Flight", href: "#services" },
+  { icon: Bus, label: "Bus", href: "#services" },
+  { icon: Monitor, label: "Cyber Cafe", href: "#services" },
 ]
 
 export function Hero() {
@@ -240,9 +241,33 @@ export function Hero() {
               {/* Spacer — lets the train & bus in the image show through */}
               <div className="min-h-[30px] flex-1" />
 
-              {/* ─── CTA Buttons ─── */}
-              {/* ─── CTA Buttons ─── */}
-              <div className="relative z-10 flex gap-3.5">
+              {/* ─── OUR SERVICES section (Up side) ─── */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                className="relative z-10"
+              >
+                <div className="flex items-start justify-between px-1">
+                  {serviceItems.map((svc) => (
+                    <Link
+                      href={svc.href}
+                      key={svc.label}
+                      className="group flex flex-col items-center gap-2.5"
+                    >
+                      <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white shadow-[0_4px_16px_-3px_rgba(26,43,86,0.12)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:bg-[#1565C0] group-hover:text-white group-hover:shadow-lg group-active:scale-95">
+                        <svc.icon className="text-[#1565C0] h-[26px] w-[26px] transition-colors duration-300 group-hover:text-white" />
+                      </div>
+                      <span className="text-navy text-[13px] font-medium transition-all duration-300 group-hover:text-[#1565C0] group-hover:font-semibold">
+                        {svc.label}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* ─── CTA Buttons (Down side) ─── */}
+              <div className="relative z-10 mt-5 flex gap-3.5 pb-5">
                 <a
                   href={site.phoneHref}
                   className="bg-brand-orange shadow-brand-orange/30 inline-flex flex-1 items-center justify-center gap-2.5 rounded-xl px-3 py-3 text-[17px] font-bold text-white shadow-lg transition-all duration-200 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-[#ff9533] hover:shadow-xl active:scale-95"
@@ -260,25 +285,6 @@ export function Hero() {
                   WhatsApp
                 </a>
               </div>
-
-              {/* ─── OUR SERVICES section ─── */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-                className="relative z-10 pb-5"
-              >
-                <div className="mt-4 flex items-start justify-between px-1">
-                  {serviceItems.map((svc) => (
-                    <a href="#services" key={svc.label} className="group flex flex-col items-center gap-2.5">
-                      <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-white shadow-[0_4px_16px_-3px_rgba(26,43,86,0.12)] transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:bg-brand-blue group-hover:shadow-lg group-active:scale-95">
-                        <svc.icon className="text-brand-blue h-[26px] w-[26px] transition-colors duration-300 group-hover:text-white" />
-                      </div>
-                      <span className="text-navy text-[13px] font-medium transition-all duration-300 group-hover:text-brand-blue group-hover:font-semibold">{svc.label}</span>
-                    </a>
-                  ))}
-                </div>
-              </motion.div>
             </div>
           </div>
         </div>
