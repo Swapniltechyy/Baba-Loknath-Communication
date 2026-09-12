@@ -87,15 +87,7 @@ export function TrainSearchForm({ onSearch, onSubmitEnquiry, className = '' }: T
   const datePickerInputId = useId()
   const dateInputRef = useRef<HTMLInputElement>(null)
 
-  // Open native calendar picker
-  const openCalendar = (e?: React.MouseEvent) => {
-    e?.preventDefault()
-    try {
-      dateInputRef.current?.showPicker()
-    } catch {
-      dateInputRef.current?.focus()
-    }
-  }
+
 
   // Load stations on component mount
   useEffect(() => {
@@ -292,18 +284,7 @@ export function TrainSearchForm({ onSearch, onSubmitEnquiry, className = '' }: T
         </div>
 
         {/* DEPARTURE DATE SECTION */}
-        <div
-          onClick={openCalendar}
-          className="journey-date group mt-3.5 flex cursor-pointer items-center justify-between rounded-xl border border-blue-100 bg-[#F8FAFC]/50 p-3 transition-colors hover:bg-blue-50/40 active:bg-blue-50"
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              openCalendar()
-            }
-          }}
-          aria-label="Select Departure Date"
-        >
+        <div className="journey-date group relative mt-3.5 flex items-center justify-between rounded-xl border border-blue-100 bg-[#F8FAFC]/50 p-3 transition-colors hover:bg-blue-50/40 active:bg-blue-50">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EAF3FF] text-[#1565C0] group-hover:bg-[#1565C0] group-hover:text-white transition-colors">
               <Calendar className="h-4 w-4" />
@@ -324,7 +305,7 @@ export function TrainSearchForm({ onSearch, onSubmitEnquiry, className = '' }: T
             </div>
           </div>
 
-          {/* HTML5 Native Date Picker (min set to today so only upcoming days can be chosen) */}
+          {/* HTML5 Native Date Picker (Safari iOS/macOS, Chrome, Android compatible) */}
           <input
             id={datePickerInputId}
             ref={dateInputRef}
@@ -332,8 +313,13 @@ export function TrainSearchForm({ onSearch, onSubmitEnquiry, className = '' }: T
             min={toISODate(today)}
             value={toISODate(selectedDate)}
             onChange={handleCustomDateChange}
-            className="sr-only"
-            tabIndex={-1}
+            onClick={(e) => {
+              try {
+                e.currentTarget.showPicker?.()
+              } catch {}
+            }}
+            aria-label="Select Departure Date"
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0 z-10"
           />
         </div>
 
